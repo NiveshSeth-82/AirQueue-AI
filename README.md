@@ -77,4 +77,90 @@ Originally designed for **airports**, the system adapts seamlessly to:
 ---
 
 ## 🏗 System Architecture
+```
+Camera Feed (CCTV / Phone)
+↓
+YOLOv8 Detection
+↓
+Centroid Tracking → Queue Zone Analysis → Density Metrics
+↓
+Local App UI (Python)
+↓
+Firebase Realtime Database (metrics only)
+↓
+Cloud Functions → Alerts (SMS/Email/Push)
+↓
+Control Dashboard (React/Streamlit)
+Camera Feed (CCTV / Phone)
+↓
+YOLOv8 Detection
+↓
+Centroid Tracking → Queue Zone Analysis → Density Metrics
+↓
+Local App UI (Python / CustomTkinter)
+↓
+Firebase Realtime Database (metrics only)
+↓
+Cloud Functions → Alerts (SMS / Push / Dashboard)
+↓
+Control Dashboard (Streamlit / React)
+```
+
+---
+
+## 📦 Installation & Setup
+
+### 1. Clone the Repository
+```
+git clone https://github.com/<your-username>/AirQueue-AI.git
+cd AirQueue-AI
+```
+
+2. Install Dependencies
+```
+pip install -r requirements.txt
+```
+4. Run the Application
+```
+python main.py --source 0
+```
+
+Using Phone IP Camera:
+```
+python main.py --source "http://<IP>:8080/video"
+```
+☁️ Firebase Integration (Optional)
+```
+Example Database Structure
+{
+  "airqueue": {
+    "queue_length": 12,
+    "density_pct": 58,
+    "risk_score": 72,
+    "estimated_wait": 310
+  }
+}
+```
+Cloud Functions
+
+Triggers alerts when:
+
+```risk_score > threshold```
+
+```density_pct > safe_limit```
+
+📊 Use Cases
+
+-- Airport queue & security control
+
+--Railway/metro crowd analytics
+
+--Disaster relief distribution
+
+-- Hospital OPD queues
+
+-- Government office service lines
+
+-- Stadiums & events
+
 
